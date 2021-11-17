@@ -6,7 +6,9 @@
   "private": true,
   "scripts": {
     "serve": "node lib/app",
-    "serve:dev": "nodemon lib/app"
+    "serve:dev": "nodemon lib/app",
+    "start": "ts-node src/config/server.ts",
+    "dev": "nodemon -x ts-node src/config/server.ts"
   },
   "dependencies": {
     "@types/node": "^14.14.22",
