@@ -7,8 +7,7 @@
   "scripts": {
     "serve": "node lib/app",
     "serve:dev": "nodemon lib/app",
-    "start": "ts-node src/config/server.ts",
-    "dev": "nodemon -x ts-node src/config/server.ts"
+    "start": "ts-node ./lib/app.js"
   },
   "dependencies": {
     "@types/node": "^14.14.22",
