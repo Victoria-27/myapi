@@ -98,7 +98,7 @@ if (req.url === "/update-prod" && req.method === "PUT") {
 //   console.log("the server is running on the port 3005");
 // });
 
-const PORT = process.env.PORT || 3005;
+const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
   console.warn(`App listening on http://localhost:${PORT}`);
 });
