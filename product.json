@@ -1,0 +1,58 @@
+[
+   {
+      "productId": 1637119602918,
+      "productName": "T Shirt",
+      "productVarieties": [
+         {
+            "size": "large",
+            "color": "orange",
+            "quantity": "15",
+            "images": [
+               "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.thetrendspotter.net%2F7-dress-shoes-every-man%2F&psig=AOvVaw0mLwY1Vq7y6rMc012u_0Fx&ust=1637209840867000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOD-9IvInvQCFQAAAAAdAAAAABAD"
+            ],
+            "price": "23000"
+         },
+         {
+            "size": "medium",
+            "color": "large",
+            "quantity": "35",
+            "images": [
+               "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/86/690064/1.jpg?7852",
+               "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/86/690064/3.jpg?3113"
+            ],
+            "price": "35000"
+         }
+      ],
+      "productDescription": "Men's Vintage Shirt Casual Short Sleeve T-Shirt",
+      "dateUploaded": "1637119602918",
+      "dateEdited": "1637123720010"
+   },
+   {
+      "productId": 1637120120058,
+      "productName": "T Shirt",
+      "productVarieties": [
+         {
+            "size": "large",
+            "color": "orange",
+            "quantity": "15",
+            "images": [
+               "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/83/453283/1.jpg?6332",
+               "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/83/453283/2.jpg?6332"
+            ],
+            "price": "23000"
+         },
+         {
+            "size": "medium",
+            "color": "large",
+            "quantity": "35",
+            "images": [
+               "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/86/690064/1.jpg?7852",
+               "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/86/690064/3.jpg?3113"
+            ],
+            "price": "35000"
+         }
+      ],
+      "productDescription": "Men's Vintage Shirt Casual Short Sleeve T-Shirt",
+      "dateUploaded": "1637120120058"
+   }
+]
