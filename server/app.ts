@@ -6,12 +6,19 @@ import { Product } from "./interface";
 /*
 implement your server code here
 */
+
+const headers = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+  'Access-Control-Max-Age': 2592000, // 30 days
+  "Content-type":"application/json"
+}
+
 const server: Server = http.createServer(
   (req: IncomingMessage, res: ServerResponse) => {
     if (req.url === "/products" && req.method === "GET") {
-      res.writeHead(200, { "Content-Type": "application/json" });
+      res.writeHead(200, headers);
       const content = getDatabase();
-      // console.log(data);
       const data = JSON.parse(content);
       res.end(JSON.stringify({ products: data }, null, 2));
       return;
@@ -34,11 +41,11 @@ if(req.url === "/create-prod" && req.method === "POST") {
             dateUploaded
           });
           fs.writeFileSync("./product.json", JSON.stringify(data2, null, 2));
-          response.writeHead(200, { "Content-type": "/json" });
+          response.writeHead(200, headers);
           response.end(JSON.stringify(data2));
         } catch (err) {
           console.log("Error occurred!", err);
-          response.writeHead(400, { "Content-type": "/json" });
+          response.writeHead(400, headers);
           return response.end("Invalid");
         }
       };
@@ -53,7 +60,7 @@ if (req.url === "/update-prod" && req.method === "PUT") {
           let productId = request.body.productId;
           if (isNaN(Number(productId))) {
             //pro 
-            response.writeHead(400, { "Content-type": "/json" });
+            response.writeHead(400, headers);
             return response.end(
               JSON.stringify({ message: "Invalid product Id " }, null, 2)
             );
@@ -63,7 +70,7 @@ if (req.url === "/update-prod" && req.method === "PUT") {
             (product: Product) => product.productId === +productId
           );
           if (!product) {
-            response.writeHead(404, { "Content-type": "/json" });
+            response.writeHead(404, headers);
             return response.end(
               JSON.stringify({ message: "product not found" }, null, 2)
             );
@@ -77,11 +84,11 @@ if (req.url === "/update-prod" && req.method === "PUT") {
             productVarieties || product.productVarieties;
           product.dateEdited = Date.now().toString();
           fs.writeFileSync("./product.json", JSON.stringify(products, null, 2));
-          response.writeHead(200, { "Content-type": "/json" });
+          response.writeHead(200, headers);
           response.end(JSON.stringify(products));
         } catch (err) {
           console.log("Error occurred!", err);
-          response.writeHead(400, { "Content-type": "/json" });
+          response.writeHead(400, headers);
           return response.end("Invalid");
         }
       };
