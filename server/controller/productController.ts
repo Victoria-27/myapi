@@ -8,7 +8,7 @@ export async function getProduct(req: IncomingMessage, res: ServerResponse) {
   try {
     const products = await findAll();
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(products));
+    res.end(JSON.stringify(products,null,2));
   } catch (error) {
     res.end("Could not get products from the dataase");
   }
