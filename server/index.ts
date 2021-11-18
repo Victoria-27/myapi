@@ -1,104 +1,125 @@
+import url from "url";
 import http, { IncomingMessage, Server, ServerResponse } from "http";
-import fs from "fs";
-import {deleteUser, bodyParser, getDatabase } from "./helper";
-import { Product } from "./interface";
+
+import service from "./service";
+import Product from "./product";
 
 /*
 implement your server code here
 */
+
 const server: Server = http.createServer(
   (req: IncomingMessage, res: ServerResponse) => {
-    if (req.url === "/products" && req.method === "GET") {
-      res.writeHead(200, { "Content-Type": "application/json" });
-      const content = getDatabase();
-      // console.log(data);
-      const data = JSON.parse(content);
-      res.end(JSON.stringify({ products: data }, null, 2));
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Request-Method", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    if (req.method === "OPTIONS") {
+      res.writeHead(200);
+      res.end();
       return;
     }
-if(req.url === "/create-prod" && req.method === "POST") {
-      const postData = async (request: any, response: ServerResponse) => {
+    if (req.method === "GET") {
+      if (req.url === "/api") {
+        const products = service.getProducts();
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.write(JSON.stringify({ success: true, data: products },null,2));
+        res.end();
+      } else if (req.url?.startsWith("/api?productId")) {
+        const q = url.parse(req.url, true).query;
+        const productId: string = q.productId + "";
         try {
-          await bodyParser(request);
-          const data = getDatabase();
-          const data2 = JSON.parse(data);
-          let productId = data2[data2.length - 1]?.id + 1 || 1;
-          const dateUploaded = Date.now().toString();
-          const { productName, productDescription, productVarieties } =
-            request.body;
-          data2.push({
-            productId: Date.now(),
-            productName,
-            productVarieties,
-            productDescription,
-            dateUploaded
-          });
-          fs.writeFileSync("./product.json", JSON.stringify(data2, null, 2));
-          response.writeHead(200, { "Content-type": "/json" });
-          response.end(JSON.stringify(data2));
-        } catch (err) {
-          console.log("Error occurred!", err);
-          response.writeHead(400, { "Content-type": "/json" });
-          return response.end("Invalid");
+          const product = service.getProduct(productId);
+          res.writeHead(200, { "Content-Type": "application/json" });
+          res.write(JSON.stringify({ success: true, data: product }));
+          res.end();
+        } catch (error: any) {
+          res.writeHead(404, { "Content-Type": "application/json" });
+          res.write(JSON.stringify({ success: false, error: error.message }));
+          res.end();
         }
-      };
-      postData(req, res);
-    }
-if (req.url === "/update-prod" && req.method === "PUT") {
-      const updateData = async (request: any, response: ServerResponse) => {
+      } else {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.write(JSON.stringify({ success: false, error: "Invalid URL" }));
+        res.end();
+      }
+    } else if (req.method === "POST") {
+      if (req.url === "/api") {
+        let body = "";
+        req.on("data", (chunk) => {
+          body += chunk;
+        });
+        req.on("end", () => {
+          let product: Product = new Product(JSON.parse(body));
+          try {
+            product = service.addProduct(product);
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.write(JSON.stringify({ success: true, data: product }));
+            res.end();
+          } catch (error: any) {
+            res.writeHead(400, { "Content-Type": "application/json" });
+            res.write(JSON.stringify({ success: false, error: error.message }));
+            res.end();
+          }
+        });
+      } else {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.write(JSON.stringify({ success: false, error: "Invalid URL" }));
+        res.end();
+      }
+    } else if (req.method === "PUT") {
+      if (req.url === "/api") {
+        let body = "";
+        req.on("data", (chunk) => {
+          body += chunk;
+        });
+        req.on("end", () => {
+          let product: Product = new Product(JSON.parse(body));
+          try {
+            service.updateProduct(product);
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.write(JSON.stringify({ success: true, data: product }));
+            res.end();
+          } catch (error: any) {
+            res.writeHead(404, { "Content-Type": "application/json" });
+            res.write(JSON.stringify({ success: false, error: error.message }));
+            res.end();
+          }
+        });
+      } else {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.write(JSON.stringify({ success: false, error: "Invalid URL" }));
+        res.end();
+      }
+    } else if (req.method === "DELETE") {
+      if (req.url?.startsWith("/api?productId")) {
+        const q = url.parse(req.url, true).query;
+        const productId: string = q.productId + "";
         try {
-          await bodyParser(request);
-          const content = getDatabase();
-          const products = JSON.parse(content);
-          let productId = request.body.productId;
-          if (isNaN(Number(productId))) {
-            //pro 
-            response.writeHead(400, { "Content-type": "/json" });
-            return response.end(
-              JSON.stringify({ message: "Invalid product Id " }, null, 2)
-            );
-          }
-          console.log(productId);
-          const product = products.find(
-            (product: Product) => product.productId === +productId
-          );
-          if (!product) {
-            response.writeHead(404, { "Content-type": "/json" });
-            return response.end(
-              JSON.stringify({ message: "product not found" }, null, 2)
-            );
-          }
-          const { productName, productDescription, productVarieties } =
-            request.body;
-          product.productName = productName || product.productName;
-          product.productDescription =
-            productDescription || product.productDescription;
-          product.productVarieties =
-            productVarieties || product.productVarieties;
-          product.dateEdited = Date.now().toString();
-          fs.writeFileSync("./product.json", JSON.stringify(products, null, 2));
-          response.writeHead(200, { "Content-type": "/json" });
-          response.end(JSON.stringify(products));
-        } catch (err) {
-          console.log("Error occurred!", err);
-          response.writeHead(400, { "Content-type": "/json" });
-          return response.end("Invalid");
+          const product = service.deleteProduct(productId);
+          res.writeHead(201, { "Content-Type": "application/json" });
+          res.write(JSON.stringify({ success: true, data: product }));
+          res.end();
+        } catch (error: any) {
+          res.writeHead(404, { "Content-Type": "application/json" });
+          res.write(JSON.stringify({ success: false, error: error.message }));
+          res.end();
         }
-      };
-      updateData(req, res);
-    }
-    else if(req.method === "DELETE"){
-      let url: any = req.url;
-      let id = url.split('/')[1];
-      deleteUser(res,id);
+      } else {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        res.write(JSON.stringify({ success: false, error: "Invalid URL" }));
+        res.end();
+      }
+    } else {
+      res.writeHead(404, { "Content-Type": "application/json" });
+      res.write(JSON.stringify({ success: false, error: "Invalid URL" }));
+      res.end();
     }
   }
 );
-// server.listen(3005, () => {
-//   console.log("the server is running on the port 3005");
-// });
 
 const PORT = process.env.PORT || 3005;
-server.listen(PORT, () => {
-  console.warn(`App listening on http://localhost:${PORT}`);
+
+server.listen(PORT).on("listening", () => {
+  console.log(`Server is listening on port ${PORT}...`);
 });

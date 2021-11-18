@@ -1,0 +1,47 @@
+[
+  {
+    "productName": "T Shirt",
+    "productId": "1",
+    "productDescription": "Men's Vintage Shirt Casual Short Sleeve T-Shirt",
+    "size": "medium",
+    "color": "Red",
+    "quantity": "35",
+    "images": [
+      "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/86/690064/1.jpg?7852",
+      "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/86/690064/3.jpg?3113"
+    ],
+    "price": "35000",
+    "dateUploaded": "1636633307531",
+    "dateEdited": "1636633307531"
+  },
+  {
+    "productName": "Plain tees",
+    "productId": "6",
+    "productDescription": "Awesome coloured plain tee shirts",
+    "size": "large",
+    "color": "Black",
+    "quantity": "15",
+    "images": [
+      "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1015&q=80",
+      "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/83/453283/2.jpg?6332"
+    ],
+    "price": "23000",
+    "dateUploaded": "1636904320831",
+    "dateEdited": "1636904320832"
+  },
+  {
+    "productName": "Denims",
+    "productId": "61",
+    "productDescription": "Original Jean Denims, fashionable",
+    "size": "small",
+    "color": "Blue",
+    "quantity": "1",
+    "images": [
+      "https://images.unsplash.com/photo-1584956795062-4a8b589f7b5e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=698&q=80",
+      "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/83/453283/2.jpg?6332"
+    ],
+    "price": "2000",
+    "dateUploaded": "1636926639751",
+    "dateEdited": "1636926639751"
+  }
+]
