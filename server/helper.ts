@@ -52,9 +52,9 @@ export async function deleteUser(res : ServerResponse,id : string){
 
 
 export function getDatabase() {
-  if (!existsSync("./data/product.json")) {
-    writeFileSync("./data/product.json", "[]");
+  if (!existsSync("./product.json")) {
+    writeFileSync("./product.json", "[]");
   }
-  const content = readFileSync("./data/product.json", { encoding: "utf8" });
+  const content = readFileSync("./product.json", { encoding: "utf8" });
   return content;
 }
