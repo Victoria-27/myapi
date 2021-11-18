@@ -28,7 +28,7 @@ function addProduct(newProduct: Product): Product {
     newProduct.dateUploaded = Date.now().toString();
     newProduct.dateEdited = Date.now().toString();
     products.push(newProduct);
-    fs.writeFileSync(__dirname+'/../database.json', JSON.stringify(products));
+    fs.writeFileSync(__dirname+'/../database.json', JSON.stringify(products,null,2));
     return newProduct;
 }
 

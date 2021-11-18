@@ -54,7 +54,7 @@ const server: Server = http.createServer(
           try {
             product = service.addProduct(product);
             res.writeHead(200, { "Content-Type": "application/json" });
-            res.write(JSON.stringify({ success: true, data: product }));
+            res.write(JSON.stringify({ success: true, data: product },null,2));
             res.end();
           } catch (error: any) {
             res.writeHead(400, { "Content-Type": "application/json" });

@@ -43,5 +43,50 @@
     "price": "2000",
     "dateUploaded": "1636926639751",
     "dateEdited": "1636926639751"
+  },
+  {
+    "productName": "Denims",
+    "productId": "611",
+    "productDescription": "Original Jean Denims, fashionable",
+    "size": "small",
+    "color": "Blue",
+    "quantity": "1",
+    "images": [
+      "https://images.unsplash.com/photo-1584956795062-4a8b589f7b5e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=698&q=80",
+      "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/83/453283/2.jpg?6332"
+    ],
+    "price": "2000",
+    "dateUploaded": "1637230631570",
+    "dateEdited": "1637230631570"
+  },
+  {
+    "productName": "Denims",
+    "productId": "6111",
+    "productDescription": "Original Jean Denims, fashionable",
+    "size": "small",
+    "color": "Blue",
+    "quantity": "1",
+    "images": [
+      "https://images.unsplash.com/photo-1584956795062-4a8b589f7b5e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=698&q=80",
+      "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/83/453283/2.jpg?6332"
+    ],
+    "price": "2000",
+    "dateUploaded": "1637230660622",
+    "dateEdited": "1637230660622"
+  },
+  {
+    "productName": "Christain Dior",
+    "productId": "61111",
+    "productDescription": "Original Jean Denims, fashionable",
+    "size": "small",
+    "color": "Blue",
+    "quantity": "1",
+    "images": [
+      "https://images.unsplash.com/photo-1584956795062-4a8b589f7b5e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=698&q=80",
+      "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/83/453283/2.jpg?6332"
+    ],
+    "price": "2000",
+    "dateUploaded": "1637230707087",
+    "dateEdited": "1637230707087"
   }
 ]
