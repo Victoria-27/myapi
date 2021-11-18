@@ -1,4 +1,9 @@
 import http, { IncomingMessage, Server, ServerResponse } from "http";
+import fs from 'fs';
+import { Product } from "./interface";
+import {deleteUser, bodyParser, getDatabase } from "./helper";
+
+
 const {
   getProduct,
   getSingleProduct,
@@ -20,7 +25,35 @@ const server: Server = http.createServer(
       getSingleProduct(req, res, id);
     }
     else if (change === "/api/products" && req.method === "POST") {
-      createProduct(req, res);
+      // createProduct(req, res);
+      
+      const postData = async (request: any, response: ServerResponse) => {
+        try {
+          await bodyParser(request);
+          const data = getDatabase();
+          const data2 = JSON.parse(data);
+          let productId = data2[data2.length - 1]?.id + 1 || 1;
+          const dateUploaded = Date.now().toString();
+          const { productName, productDescription, productVarieties } =
+            request.body;
+          data2.push({
+            productId: Date.now(),
+            productName,
+            productVarieties,
+            productDescription,
+            dateUploaded
+          });
+          fs.writeFileSync("./product.json", JSON.stringify(data2, null, 2));
+          response.writeHead(200, { "Content-type": "/json" });
+          response.end(JSON.stringify(data2));
+        } catch (err) {
+          console.log("Error occurred!", err);
+          response.writeHead(400, { "Content-type": "/json" });
+          return response.end("Invalid");
+        }
+      };
+      postData(req, res);
+
     }
     // PUT request to update
     else if (change.match(/\/api\/products\/([0-9]+)/) && req.method === "PATCH") 
