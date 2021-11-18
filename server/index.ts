@@ -2,7 +2,7 @@ import url from "url";
 import http, { IncomingMessage, Server, ServerResponse } from "http";
 
 import service from "./service";
-import Product from "./product";
+import Product from "./helper";
 
 /*
 implement your server code here

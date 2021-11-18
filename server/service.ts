@@ -1,5 +1,5 @@
 import fs from 'fs';
-import Product from './product';
+import Product from './helper';
 function getProducts() : Product[]{
     const products = fs.readFileSync(__dirname+'/../database.json', {encoding:'utf8', flag:'r'});
     return JSON.parse(products);
